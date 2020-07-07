@@ -26,5 +26,9 @@ public class EmpleadoService {
 	public Optional<Empleado> findById(int id) {
 		return empleadoRepository.findById(id);
 	}
+	
+	public void delete(Integer id) {
+		empleadoRepository.deleteById(id);
+	}
 
 }
