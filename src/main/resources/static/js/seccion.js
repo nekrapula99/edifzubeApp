@@ -5,12 +5,10 @@ $('document').ready(function() {
 		
 		var href = $(this).attr('href')
 		
-		$.get(href,function(empleado, status){
-			$('#idEditar').val(empleado.idempleado);
-			$('#cedulaEdit').val(empleado.cedula);
-			$('#nombreEdit').val(empleado.nombre);
-			$('#apellidoEdit').val(empleado.apellido);
-			$('#telefonoEdit').val(empleado.telefono);
+		$.get(href,function(seccion, status){
+			$('#idEditar').val(seccion.idseccion);
+			$('#codigoEdit').val(seccion.codseccion);
+			$('#nombreEdit').val(seccion.nombreseccion);
 		});
 		
 		$('#editModal').modal();

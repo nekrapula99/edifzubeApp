@@ -401,6 +401,32 @@
         </div>
         <!-- page start-->
         <h1>Secciones</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Nueva Sección</button>
+        <br><br>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Nombre Sección</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each = "seccion : ${secciones}">
+                    <td th:text = "${seccion.codseccion}"></td>
+                    <td th:text = "${seccion.nombreseccion}"></td>
+                    <td>
+                    <div class="btn-group">
+                    	<a  th:href = "@{/secciones/findById/(id=${seccion.idseccion})}" class="btn btn-primary" id="editButton"><i class="icon_pencil-edit"></i></a>
+                    	<a  class="btn btn-success" id="detailsButton"><i class="icon_document_alt"></i></a>
+                    	<a  th:href = "@{/secciones/delete?id=__${seccion.idseccion}__}" class="btn btn-danger" id="deleteButton"><i class="icon_close_alt2"></i></a>	
+                    </div>
+                    </td>
+                  </tr>
+                 </tbody>
+         </table>
+        
+        
+        
         <!-- page end-->
       </section>
     </section>
@@ -418,6 +444,108 @@
     </div>
   </section>
   <!-- container section end -->
+  
+  
+   <!-- NUEVA SECCION -->
+  
+	  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Nueva Seccion</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form th:action="@{/secciones/addNew}" method="post">
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Codigo:</label>
+	            <input type="text" class="form-control" id="recipient-name" name = "codseccion">
+	          </div>
+	          
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Nombre Sección:</label>
+	            <input type="text" class="form-control" id="recipient-name" name = "nombreseccion">
+	          </div>
+	          
+	          <div class="form-group">
+	           	<button type="submit" class="btn btn-primary">Enviar</button>
+	          </div>
+	     
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	   <!-- EDITAR SECCION -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Actualizar Sección</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form th:action="@{/secciones/update}" method="put">
+	        
+	        <div  class="form-group">
+	            <input type="hidden" class="form-control" id="idEditar" name = "idseccion" readonly="true">
+	          </div>
+	                
+	        
+	        <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Codigo:</label>
+	            <input type="text" class="form-control" id="codigoEdit" name = "codseccion">
+	          </div>
+	         
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Nombre Sección:</label>
+	            <input type="text" class="form-control" id="nombreEdit" name = "nombreseccion">
+	          </div>
+	          
+	          <div class="form-group">
+	           	<button type="submit" class="btn btn-primary">Enviar</button>
+	          </div>
+	     
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+  <!-- ELIMINAR SECCION -->
+	  <div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Eliminar Sección</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p>Esta seguro que desea eliminar esta sección?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <a  class="btn btn-primary" id="confirmDeleteButton" href="">Si, Eliminar</a>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+  
+  
+  
   <!-- javascripts -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -426,6 +554,8 @@
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
   <!--custome script for all page-->
   <script src="js/scripts.js"></script>
+  
+  <script src="js/seccion.js"></script>
 
 
 </body>

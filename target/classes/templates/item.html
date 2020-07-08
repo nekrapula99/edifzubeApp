@@ -401,6 +401,179 @@
         </div>
         <!-- page start-->
         <h1>Items</h1>
+        
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Nuevo Item</button>
+        <br><br>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Nombre Item</th>
+                    <th>Proveedor</th>
+                    <th>Unidad de medida</th>
+                    <th>Iva</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each = "item : ${items}">
+                    <td th:text = "${item.coditem}"></td>
+                    <td th:text = "${item.descripcion}"></td>
+                    <td th:text = "${item.provedor}"></td>
+                    <td th:text = "${item.unimedida}"></td>
+                    <td th:text = "${item.iva}"></td>
+                    <td th:text = "${item.precio}"></td>
+                    <td>
+                    <div class="btn-group">
+                    	<a  th:href = "@{/items/findById/(id=${item.iditem})}" class="btn btn-primary" id="editButton"><i class="icon_pencil-edit"></i></a>
+                    	<a  class="btn btn-success" id="detailsButton"><i class="icon_document_alt"></i></a>
+                    	<a  th:href = "@{/items/delete?id=__${item.iditem}__}" class="btn btn-danger" id="deleteButton"><i class="icon_close_alt2"></i></a>	
+                    </div>
+                    </td>
+                  </tr>
+                 </tbody>
+         </table>
+        
+          <!-- NUEVA SECCION -->
+  
+	  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Nuevo Item</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form th:action="@{/items/addNew}" method="post">
+	        
+	         <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Codigo item:</label>
+	            <input type="text" class="form-control" id="recipient-name" name = "coditem">
+	          </div>
+	         
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Nombre Item:</label>
+	            <input type="text" class="form-control" id="recipient-name" name = "descripcion">
+	          </div>
+	          
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Proveedor:</label>
+	            <input type="text" class="form-control" id="recipient-name" name = "provedor">
+	          </div>
+	          
+	           <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Unidad de medida:</label>
+	            <input type="text" class="form-control" id="recipient-name" name = "unimedida">
+	          </div>
+	          
+	           <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Iva:</label>
+	            <input type="number" class="form-control" id="recipient-name" name = "iva">
+	          </div>
+	          
+	           <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Precio:</label>
+	            <input type="number" class="form-control" id="recipient-name" name = "precio">
+	          </div>
+	        
+	       
+	          
+	          <div class="form-group">
+	           	<button type="submit" class="btn btn-primary">Enviar</button>
+	          </div>
+	     
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+        
+    <!-- EDITAR ITEM -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Actualizar Item</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form th:action="@{/items/update}" method="put">
+	        
+	        <div  class="form-group">
+	            <input type="hidden" class="form-control" id="idEditar" name = "iditem" readonly="true">
+	          </div>
+	                
+	        
+	        <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Codigo item:</label>
+	            <input type="text" class="form-control" id="codigoEdit" name = "coditem">
+	          </div>
+	         
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Nombre Item:</label>
+	            <input type="text" class="form-control" id="nombreEdit" name = "descripcion">
+	          </div>
+	          
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Proveedor:</label>
+	            <input type="text" class="form-control" id="provedorEdit" name = "provedor">
+	          </div>
+	          
+	           <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Unidad de medida:</label>
+	            <input type="number" class="form-control" id="unimedidaEdit" name = "unimedida">
+	          </div>
+	          
+	           <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Iva:</label>
+	            <input type="number" class="form-control" id="ivaEdit" name = "iva">
+	          </div>
+	          
+	           <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Precio:</label>
+	            <input type="number" class="form-control" id="precioEdit" name = "precio">
+	          </div>
+	          
+	          <div class="form-group">
+	           	<button type="submit" class="btn btn-primary">Enviar</button>
+	          </div>
+	     
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+        
+         <!-- ELIMINAR ITEM -->
+	  <div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Eliminar Item</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p>Esta seguro que desea eliminar este item?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <a  class="btn btn-primary" id="confirmDeleteButton" href="">Si, Eliminar</a>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
         <!-- page end-->
       </section>
     </section>
@@ -427,6 +600,7 @@
   <!--custome script for all page-->
   <script src="js/scripts.js"></script>
 
+  <script src="js/item.js"></script>
 
 </body>
 

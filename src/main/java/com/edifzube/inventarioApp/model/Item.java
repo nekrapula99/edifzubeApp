@@ -26,9 +26,6 @@ public class Item {
 	@Column(name = "DESCRIPCION",length = 50)
 	private String descripcion;
 	
-	@Column(name = "CANTIDAD")
-	private int cantidad;
-	
 	@Column(name = "UNIMEDIDA",length = 50)
 	private String unimedida;
 	
@@ -67,14 +64,6 @@ public class Item {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public int getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
 	}
 
 	public String getUnimedida() {
@@ -119,8 +108,8 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [iditem=" + iditem + ", coditem=" + coditem + ", descripcion=" + descripcion + ", cantidad="
-				+ cantidad + ", unimedida=" + unimedida + ", iva=" + iva + ", precio=" + precio + ", provedor="
+		return "Item [iditem=" + iditem + ", coditem=" + coditem + ", descripcion=" + descripcion
+				+ ", unimedida=" + unimedida + ", iva=" + iva + ", precio=" + precio + ", provedor="
 				+ provedor + ", seccion=" + seccion + "]";
 	}
 	

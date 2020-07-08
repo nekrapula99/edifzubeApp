@@ -18,6 +18,7 @@ import com.edifzube.inventarioApp.service.EmpleadoService;
 @Controller
 public class EmpleadoController {
 	
+	
 	@Autowired
 	private EmpleadoService empleadoService;
 	
@@ -40,13 +41,13 @@ public class EmpleadoController {
 		return empleadoService.findById(id);
 	}
 	
-	@RequestMapping(value = "empleados/update", method = {RequestMethod.PUT,RequestMethod.GET})
+	@RequestMapping(value = "/empleados/update", method = {RequestMethod.PUT,RequestMethod.GET})
 	public String update(Empleado empleado){
 		empleadoService.save(empleado);
 		return "redirect:/empleados";
 	}
 	
-	@RequestMapping(value = "empleados/delete", method = {RequestMethod.DELETE,RequestMethod.GET})
+	@RequestMapping(value = "/empleados/delete", method = {RequestMethod.DELETE,RequestMethod.GET})
 	public String delete(Integer id){
 		empleadoService.delete(id);
 		return "redirect:/empleados";

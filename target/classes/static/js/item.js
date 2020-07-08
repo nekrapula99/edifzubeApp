@@ -5,12 +5,15 @@ $('document').ready(function() {
 		
 		var href = $(this).attr('href')
 		
-		$.get(href,function(empleado, status){
-			$('#idEditar').val(empleado.idempleado);
-			$('#cedulaEdit').val(empleado.cedula);
-			$('#nombreEdit').val(empleado.nombre);
-			$('#apellidoEdit').val(empleado.apellido);
-			$('#telefonoEdit').val(empleado.telefono);
+		$.get(href,function(item, status){
+			$('#idEditar').val(item.iditem);
+			$('#codigoEdit').val(item.coditem);
+			$('#nombreEdit').val(item.descripcion);
+			$('#provedorEdit').val(item.proveedor);
+			$('#unimedidaEdit').val(item.unimedida);
+			$('#ivaEdit').val(item.iva);
+			$('#precioEdit').val(item.precio);
+				
 		});
 		
 		$('#editModal').modal();

@@ -6,6 +6,7 @@ $('document').ready(function() {
 		var href = $(this).attr('href')
 		
 		$.get(href,function(empleado, status){
+			$('#idEditar').val(empleado.idempleado);
 			$('#cedulaEdit').val(empleado.cedula);
 			$('#nombreEdit').val(empleado.nombre);
 			$('#apellidoEdit').val(empleado.apellido);

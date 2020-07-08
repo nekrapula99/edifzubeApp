@@ -18,7 +18,7 @@ public class Empleado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="IDEMPLEADO")
-	private int idempleado;
+	private Integer idempleado;
 	
 	@Column(name = "NOMBRE",length = 50)
 	private String nombre;
@@ -37,14 +37,6 @@ public class Empleado {
 	private Item item;
 	
 	private Integer itemid;
-
-	public int getIdempleado() {
-		return idempleado;
-	}
-
-	public void setIdempleado(int idempleado) {
-		this.idempleado = idempleado;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -84,6 +76,14 @@ public class Empleado {
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	public Integer getIdempleado() {
+		return idempleado;
+	}
+
+	public void setIdempleado(Integer idempleado) {
+		this.idempleado = idempleado;
 	}
 
 	@Override
