@@ -19,11 +19,12 @@ public class ItemService {
 		return itemRepository.findAll();
 	}
 	
-	public void save(Item empleado) {
-		itemRepository.save(empleado);
+	public void save(Item item) {
+		itemRepository.save(item);
 	}
 	
 	public Optional<Item> findById(int id) {
+		System.out.println("item servi find: "+id);
 		return itemRepository.findById(id);
 	}
 	

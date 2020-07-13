@@ -1,26 +1,38 @@
 package com.edifzube.inventarioApp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "SECCION")
-public class Seccion {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Seccion implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="IDSECCION")
-	private int idseccion;
+	private Integer idseccion;
 	
 	@Column(name = "CODSECCION",length = 50)
 	private String codseccion;
@@ -28,14 +40,26 @@ public class Seccion {
 	@Column(name = "NOMBRESECCION",length = 50)
 	private String nombreseccion;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "seccion")
+	@OneToMany(mappedBy = "seccion")
 	private List<Item> listItems;
+	
+	
+	public Seccion() {
+    }
 
-	public int getIdseccion() {
+	public Seccion(Integer idseccion, String codseccion, String nombreseccion) {
+		this.idseccion = idseccion;
+		this.codseccion = codseccion;
+		this.nombreseccion = nombreseccion;
+	}
+
+
+
+	public Integer getIdseccion() {
 		return idseccion;
 	}
 
-	public void setIdseccion(int idseccion) {
+	public void setIdseccion(Integer idseccion) {
 		this.idseccion = idseccion;
 	}
 
@@ -55,6 +79,7 @@ public class Seccion {
 		this.nombreseccion = nombreseccion;
 	}
 
+
 	public List<Item> getListItems() {
 		return listItems;
 	}
@@ -66,7 +91,7 @@ public class Seccion {
 	@Override
 	public String toString() {
 		return "Seccion [idseccion=" + idseccion + ", codseccion=" + codseccion + ", nombreseccion=" + nombreseccion
-				+ ", listItems=" + listItems + "]";
+				+ ", listItems=" + listItems+"]";
 	}
 	
 

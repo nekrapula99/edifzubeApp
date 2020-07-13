@@ -25,6 +25,7 @@ public class EmpleadoController {
 	@GetMapping("/empleados")
 	public String getEmpleados(Model model) {
 		List<Empleado> empleadosList = empleadoService.getEmpleados();
+		System.out.println("empleado controller: "+empleadosList);
 		model.addAttribute("empleados", empleadosList);
 		return "empleado";
 	}

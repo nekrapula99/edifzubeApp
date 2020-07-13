@@ -24,6 +24,7 @@ public class EmpleadoService {
 	}
 	
 	public Optional<Empleado> findById(int id) {
+		System.out.println("empleado servi find: "+id);
 		return empleadoRepository.findById(id);
 	}
 	

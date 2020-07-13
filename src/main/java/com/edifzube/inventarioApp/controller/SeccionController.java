@@ -25,12 +25,13 @@ public class SeccionController {
 	@GetMapping("/secciones")
 	public String getSecciones(Model model) {
 		List<Seccion> seccionesList = seccionService.getSecciones();
+		System.out.println("seccionesList controller: "+seccionesList);
 		model.addAttribute("secciones", seccionesList);
 		return "seccion";
 	}
 	
 	@PostMapping("/secciones/addNew")
-	public String addNewEmpleado(Seccion seccion) {
+	public String addNewSeccion(Seccion seccion) {
 		seccionService.save(seccion);
 		return "redirect:/secciones";
 	}

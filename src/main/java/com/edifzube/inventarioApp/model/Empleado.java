@@ -1,18 +1,25 @@
 package com.edifzube.inventarioApp.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "EMPLEADO")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Empleado {
 	
 	@Id
@@ -32,12 +39,9 @@ public class Empleado {
 	@Column(name = "TELEFONO",length = 50)
 	private String telefono;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "SECCIONID", insertable = false,updatable = false)
-	private Item item;
+	@OneToMany(mappedBy = "empleado")
+	private List<Item> listItems;
 	
-	private Integer itemid;
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -70,12 +74,13 @@ public class Empleado {
 		this.telefono = telefono;
 	}
 
-	public Item getItem() {
-		return item;
+
+	public List<Item> getListItems() {
+		return listItems;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setListItems(List<Item> listItems) {
+		this.listItems = listItems;
 	}
 
 	public Integer getIdempleado() {
@@ -89,7 +94,7 @@ public class Empleado {
 	@Override
 	public String toString() {
 		return "Empleado [idempleado=" + idempleado + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula="
-				+ cedula + ", telefono=" + telefono + ", item=" + item + "]";
+				+ cedula + ", telefono=" + telefono + ", listItems=" + listItems + "]";
 	}
 
 }

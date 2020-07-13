@@ -1,8 +1,9 @@
 package com.edifzube.inventarioApp.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,15 +11,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+
 @Entity
 @Table(name = "ITEM")
-public class Item {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "iditem")
+public class Item implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="IDITEM")
-	private int iditem;
+	private Integer iditem;
 	
 	@Column(name = "CODITEM",length = 50)
 	private String coditem;
@@ -36,17 +55,28 @@ public class Item {
 	private double precio;
 	
 	@Column(name = "PROVEEDOR",length = 50)
-	private String provedor;
+	private String proveedor;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "SECCIONID", insertable = false,updatable = false)
+	@ManyToOne
+    @JoinColumn(name = "seccionid", insertable = false, updatable = false)
 	private Seccion seccion;
-
-	public int getIditem() {
+	
+	private Integer seccionid;
+	
+	@ManyToOne
+    @JoinColumn(name = "empleadoid", insertable = false, updatable = false)
+	private Empleado empleado;
+	
+	private Integer empleadoid;
+	
+	public Item() {
+    }
+	
+	public Integer getIditem() {
 		return iditem;
 	}
 
-	public void setIditem(int iditem) {
+	public void setIditem(Integer iditem) {
 		this.iditem = iditem;
 	}
 
@@ -90,13 +120,6 @@ public class Item {
 		this.precio = precio;
 	}
 
-	public String getProvedor() {
-		return provedor;
-	}
-
-	public void setProvedor(String provedor) {
-		this.provedor = provedor;
-	}
 
 	public Seccion getSeccion() {
 		return seccion;
@@ -106,12 +129,44 @@ public class Item {
 		this.seccion = seccion;
 	}
 
+	public String getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
+
 	@Override
 	public String toString() {
-		return "Item [iditem=" + iditem + ", coditem=" + coditem + ", descripcion=" + descripcion
-				+ ", unimedida=" + unimedida + ", iva=" + iva + ", precio=" + precio + ", provedor="
-				+ provedor + ", seccion=" + seccion + "]";
+		return "Item [iditem=" + iditem + ", coditem=" + coditem + ", descripcion=" + descripcion + ", unimedida="
+				+ unimedida + ", iva=" + iva + ", precio=" + precio + ", proveedor=" + proveedor 
+				+"]";
+	}
+
+	public Integer getSeccionid() {
+		return seccionid;
 	}
 	
+	public void setSeccionid(Integer seccionid) {
+		this.seccionid = seccionid;
+	}
+
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+
+	public Integer getEmpleadoid() {
+		return empleadoid;
+	}
+
+	public void setEmpleadoid(Integer empleadoid) {
+		this.empleadoid = empleadoid;
+	}
+
 
 }

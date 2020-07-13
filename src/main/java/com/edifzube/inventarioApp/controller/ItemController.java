@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edifzube.inventarioApp.model.Item;
+import com.edifzube.inventarioApp.model.Seccion;
 import com.edifzube.inventarioApp.service.ItemService;
+import com.edifzube.inventarioApp.service.SeccionService;
 
 @Controller
 public class ItemController {
@@ -22,15 +24,21 @@ public class ItemController {
 	@Autowired
 	private ItemService itemService;
 	
+	@Autowired
+	private SeccionService seccionService;
+	
 	@GetMapping("/items")
 	public String getItems(Model model) {
 		List<Item> itemsList = itemService.getItems();
-		model.addAttribute("items", itemsList);
+		model.addAttribute("items", itemsList);	
+		List<Seccion> seccionesList = seccionService.getSecciones();
+		model.addAttribute("secciones", seccionesList);
 		return "item";
 	}
 	
 	@PostMapping("/items/addNew")
-	public String addNewEmpleado(Item item) {
+	public String addNew(Item item) {			
+		System.out.println("item CON: "+item);
 		itemService.save(item);
 		return "redirect:/items";
 	}

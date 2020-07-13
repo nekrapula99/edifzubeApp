@@ -14,6 +14,20 @@ $('document').ready(function() {
 		$('#editModal').modal();
 	});
 	
+	$('table #detailsButton').on('click',function(event){
+		event.preventDefault();
+		
+		var href = $(this).attr('href')
+		
+		$.get(href,function(seccion, status){
+			$('#idEditar2').val(seccion.idseccion);
+			$('#codigoEdit2').val(seccion.codseccion);
+			$('#nombreEdit2').val(seccion.nombreseccion);			
+		});
+		
+		$('#detailsModal').modal();
+	});
+	
 	
 	$('table #deleteButton').on('click',function(event){
 		event.preventDefault();

@@ -16,6 +16,22 @@ $('document').ready(function() {
 		$('#editModal').modal();
 	});
 	
+	$('table #detailsButton').on('click',function(event){
+		event.preventDefault();
+		
+		var href = $(this).attr('href')
+		
+		$.get(href,function(empleado, status){
+			$('#idEditar2').val(empleado.idempleado);
+			$('#cedulaEdit2').val(empleado.cedula);
+			$('#nombreEdit2').val(empleado.nombre);
+			$('#apellidoEdit2').val(empleado.apellido);
+			$('#telefonoEdit2').val(empleado.telefono);			
+		});
+		
+		$('#detailsModal').modal();
+	});
+	
 	
 	$('table #deleteButton').on('click',function(event){
 		event.preventDefault();
